@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Máximo — Técnico en PC. Diagnóstico, formateo, limpieza, armado y mantención. Santiago, Chile. A domicilio.">
+<title>Máximo | Técnico en PC · Santiago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  /* ── Variables ── */
+  :root {
+    --bg:        #0c0c0e;
+    --bg2:       #111114;
+    --bg3:       #18181c;
+    --border:    rgba(255,255,255,0.07);
+    --border2:   rgba(255,255,255,0.12);
+    --text:      #e4e4e8;
+    --muted:     #6b6b78;
+    --muted2:    #44444e;
+    --accent:    #7c5cfc;
+    --accent-bg: rgba(124,92,252,0.10);
+    --green:     #22c55e;
+    --green-bg:  rgba(34,197,94,0.10);
+    --wa:        #25D366;
+    --radius:    12px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    padding: 0 0 3rem;
+  }
+
+  /* ── Hero ── */
+  .hero {
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #7c5cfc, #a78bfa, #7c5cfc);
+    background-size: 200% auto;
+    animation: shimmer 3s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  .avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: var(--bg3);
+    border: 1.5px solid var(--border2);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 1.25rem;
+    font-size: 34px;
+  }
+
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.5px;
+  }
+
+  .hero .sub {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .badges {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border2);
+    color: var(--muted);
+    background: var(--bg2);
+  }
+
+  .badge.active {
+    border-color: rgba(34,197,94,0.35);
+    color: var(--green);
+    background: var(--green-bg);
+  }
+
+  .badge .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.4; }
+  }
+
+  /* ── Section ── */
+  .section {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .section-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--muted2);
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  /* ── Services ── */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .svc-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+
+  .svc-card:hover {
+    border-color: var(--border2);
+    background: var(--bg3);
+  }
+
+  .svc-icon {
+    font-size: 22px;
+    margin-bottom: 8px;
+  }
+
+  .svc-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .svc-desc {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  /* ── Domicilio ── */
+  .info-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 14px;
+    margin-top: 8px;
+  }
+
+  .info-icon {
+    font-size: 24px;
+    flex-shrink: 0;
+    color: #60a5fa;
+  }
+
+  .info-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .info-sub {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ── Prices ── */
+  .price-list {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+
+  .price-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--border);
+    gap: 12px;
+    transition: background 0.15s;
+  }
+
+  .price-item:last-child {
+    border-bottom: none;
+  }
+
+  .price-item:hover {
+    background: var(--bg3);
+  }
+
+  .price-left { flex: 1; min-width: 0; }
+
+  .price-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .price-note {
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .price-right {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .price-value {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+
+  .tag-purple {
+    background: var(--accent-bg);
+    color: #a78bfa;
+    border: 1px solid rgba(124,92,252,0.2);
+  }
+
+  .tag-green {
+    background: var(--green-bg);
+    color: var(--green);
+    border: 1px solid rgba(34,197,94,0.2);
+  }
+
+  /* ── Aviso ── */
+  .aviso {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 12px 14px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .aviso-icon { font-size: 15px; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
+  .aviso p { font-size: 11px; color: var(--muted); line-height: 1.6; }
+  .aviso span { color: #a78bfa; }
+
+  /* ── CTA WhatsApp ── */
+  .cta-wrap {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .cta-wa {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--wa);
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    transition: opacity 0.2s, transform 0.1s;
+  }
+
+  .cta-wa:active {
+    opacity: 0.85;
+    transform: scale(0.98);
+  }
+
+  .cta-wa svg {
+    width: 22px; height: 22px;
+  }
+
+  .cta-sub {
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted2);
+    margin-top: 10px;
+  }
+
+  /* ── Separador ── */
+  hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 1.5rem 1.5rem 0;
+  }
+
+  /* ── Footer ── */
+  .footer {
+    text-align: center;
+    padding: 1.5rem 1.5rem 0;
+    font-size: 11px;
+    color: var(--muted2);
+    line-height: 2;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="avatar">🖥️</div>
+    <h1>Máximo</h1>
+    <p class="sub">Técnico en PC &amp; Consolas · Santiago, Chile</p>
+    <div class="badges">
+      <span class="badge active">
+        <span class="dot"></span>
+        Disponible ahora
+      </span>
+      <span class="badge">📍 A domicilio</span>
+    </div>
+  </div>
+
+  <!-- SERVICIOS -->
+  <div class="section">
+    <p class="section-label">Servicios</p>
+    <div class="grid-2">
+
+      <div class="svc-card">
+        <div class="svc-icon">🔍</div>
+        <div class="svc-name">Diagnóstico</div>
+        <div class="svc-desc">Detección completa de fallas en el hardware y software</div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔄</div>
+        <div class="svc-name">Formateo</div>
+        <div class="svc-desc">Windows limpio, drivers y activación incluidos</div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">💨</div>
+        <div class="svc-name">Limpieza pc`s desktop y notebooks</div>
+        <div class="svc-desc">Interna, pasta térmica y ventiladores</div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🔧</div>
+        <div class="svc-name">Armado de PC desktop</div>
+        <div class="svc-desc">Ensamblado, cableado y configuración</div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🛠️</div>
+        <div class="svc-name">Hardware &amp; SW</div>
+        <div class="svc-desc">Reemplazo de piezas, RAM, SSD, fuentes</div>
+      </div>
+
+      <div class="svc-card">
+        <div class="svc-icon">🎮</div>
+        <div class="svc-name">Consolas</div>
+        <div class="svc-desc">PS4, PS5, xbox one — limpieza y pasta</div>
+      </div>
+
+    </div>
+
+    <div class="info-row">
+      <div class="info-icon">🚗</div>
+      <div>
+        <div class="info-title">Voy a domicilio</div>
+        <div class="info-sub">Sin costo adicional dentro de quilicura · Coordina por WhatsApp</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRECIOS -->
+  <div class="section" style="margin-top:1.5rem">
+    <p class="section-label">Precios referenciales</p>
+    <div class="price-list">
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Diagnóstico</div>
+          <div class="price-note">verificación completa de fallas en hardware y software</div>
+        </div>
+        <div class="price-right">
+          <div class="price-value">$15.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Formateo + Windows 11</div>
+          <div class="price-note">Drivers, actualizaciones y activación windows 10,11,11 ltsc</div>
+        </div>
+        <div class="price-right">
+          <div class="price-value">$15.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Limpieza de PC desktop y notebooks</div>
+          <div class="price-note">Interna + cambio de pasta térmica</div>
+        </div>
+        <div class="price-right">
+          <div class="tag tag-purple">Desde</div>
+          <div class="price-value">$15.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Armado de PC</div>
+          <div class="price-note">Con componentes del cliente</div>
+        </div>
+        <div class="price-right">
+          <div class="price-value">$30.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Mantención completa</div>
+          <div class="price-note">Hardware + software + optimización</div>
+        </div>
+        <div class="price-right">
+          <div class="tag tag-purple">Desde</div>
+          <div class="price-value">$25.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Limpieza consola</div>
+          <div class="price-note">PS4 / PS5 / Nintendo Switch</div>
+        </div>
+        <div class="price-right">
+          <div class="tag tag-purple">Desde</div>
+          <div class="price-value">$20.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Pasta térmica consola</div>
+          <div class="price-note">incluye limpieza completa</div>
+        </div>
+        <div class="price-right">
+          
+          <div class="tag tag-purple">Desde</div>
+          <div class="price-value">$20.000</div>
+        </div>
+      </div>
+
+      <div class="price-item">
+        <div class="price-left">
+          <div class="price-name">Instalación de software</div>
+          <div class="price-note">Office, antivirus, windows</div>
+        </div>
+        <div class="price-right">
+          <div class="tag tag-green">a eleccion</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="aviso">
+      <span class="aviso-icon">ℹ️</span>
+      <p>Precios en <span>pesos chilenos (CLP)</span>. El valor final puede variar según diagnóstico. <span>Repuestos no incluidos.</span> Consulta sin compromiso.</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-wrap">
+    <a
+      href="https://wa.me/56975587646?text=Hola%20M%C3%A1ximo%2C%20vi%20tu%20p%C3%A1gina%20y%20necesito%20ayuda%20con%20mi%20PC%20%F0%9F%96%A5%EF%B8%8F"
+      class="cta-wa"
+      aria-label="Contactar a Máximo por WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+        <path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.828L.057 23.18a1 1 0 001.212 1.213l5.352-1.466A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.652-.51-5.17-1.402l-.37-.218-3.178.87.87-3.178-.218-.37A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
+      </svg>
+      Escribir por WhatsApp
+    </a>
+    <p class="cta-sub">Respondo en menos de 1 hora · Lunes a sábado</p>
+  </div>
+
+  <hr>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>Máximo · Técnico en PC &amp; Consolas</p>
+    <p>Santiago, Chile · +56 9 7558 7646</p>
+    <p style="margin-top:6px;color:#2a2a2e">© 2026</p>
+  </div>
+
+</div>
+</body>
+</html>
