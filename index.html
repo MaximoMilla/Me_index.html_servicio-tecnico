@@ -3,555 +3,839 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Máximo — Técnico en PC. Diagnóstico, formateo, limpieza, armado y mantención. Santiago, Chile. A domicilio.">
-<title>Máximo | Técnico en PC · Santiago</title>
+<meta name="description" content="SHIMA — Soporte técnico profesional en PC, notebooks y consolas. Quilicura, Santiago. A domicilio.">
+<title>SHIMA · Soporte Técnico · Quilicura</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  /* ── Reset ── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07070a;
+  --bg2:#0d0d11;
+  --bg3:#131318;
+  --bg4:#1a1a22;
+  --border:rgba(255,255,255,0.055);
+  --border2:rgba(255,255,255,0.10);
+  --border3:rgba(255,255,255,0.16);
+  --text:#dddde8;
+  --muted:#5a5a72;
+  --muted2:#383848;
+  --white:#f0f0fa;
+  --v:#7c5cfc;
+  --v2:#a78bfa;
+  --v-bg:rgba(124,92,252,0.07);
+  --v-brd:rgba(124,92,252,0.20);
+  --g:#22c55e;
+  --g-bg:rgba(34,197,94,0.07);
+  --g-brd:rgba(34,197,94,0.20);
+  --b:#60a5fa;
+  --b-bg:rgba(96,165,250,0.07);
+  --b-brd:rgba(96,165,250,0.18);
+  --a:#fbbf24;
+  --a-bg:rgba(251,191,36,0.07);
+  --a-brd:rgba(251,191,36,0.20);
+  --r:10px;--r-lg:14px;--r-xl:18px;
+}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+body{background:var(--bg);color:var(--text);font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+.page{max-width:460px;margin:0 auto;padding-bottom:4rem;}
 
-  /* ── Variables ── */
-  :root {
-    --bg:        #0c0c0e;
-    --bg2:       #111114;
-    --bg3:       #18181c;
-    --border:    rgba(255,255,255,0.07);
-    --border2:   rgba(255,255,255,0.12);
-    --text:      #e4e4e8;
-    --muted:     #6b6b78;
-    --muted2:    #44444e;
-    --accent:    #7c5cfc;
-    --accent-bg: rgba(124,92,252,0.10);
-    --green:     #22c55e;
-    --green-bg:  rgba(34,197,94,0.10);
-    --wa:        #25D366;
-    --radius:    12px;
-    --radius-sm: 8px;
-  }
+/* ── HERO ── */
+.hero{padding:2.8rem 1.5rem 2.2rem;text-align:center;border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
 
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    min-height: 100vh;
-    -webkit-font-smoothing: antialiased;
-  }
+/* Partículas de fondo */
+.hero-bg{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.hero-bg span{
+  position:absolute;width:1.5px;height:1.5px;border-radius:50%;
+  background:var(--v2);opacity:0;
+  animation:particle 6s ease-in-out infinite;
+}
+.hero-bg span:nth-child(1){left:15%;top:30%;animation-delay:0s}
+.hero-bg span:nth-child(2){left:80%;top:20%;animation-delay:1.2s}
+.hero-bg span:nth-child(3){left:55%;top:70%;animation-delay:2.4s}
+.hero-bg span:nth-child(4){left:30%;top:65%;animation-delay:0.6s}
+.hero-bg span:nth-child(5){left:70%;top:50%;animation-delay:3.0s}
+.hero-bg span:nth-child(6){left:90%;top:75%;animation-delay:1.8s}
+@keyframes particle{0%,100%{opacity:0;transform:scale(1)}50%{opacity:.55;transform:scale(2.5)}}
 
-  .wrap {
-    max-width: 480px;
-    margin: 0 auto;
-    padding: 0 0 3rem;
-  }
+/* Línea superior animada */
+.hero::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent 0%,var(--v) 30%,var(--v2) 50%,var(--v) 70%,transparent 100%);
+  background-size:200% auto;animation:shimmer 3.5s linear infinite;
+}
+@keyframes shimmer{to{background-position:200% center}}
 
-  /* ── Hero ── */
-  .hero {
-    padding: 2.5rem 1.5rem 2rem;
-    text-align: center;
-    border-bottom: 1px solid var(--border);
-    position: relative;
-  }
+/* Resplandor central */
+.hero-glow{
+  position:absolute;top:-60px;left:50%;transform:translateX(-50%);
+  width:320px;height:220px;
+  background:radial-gradient(ellipse,rgba(124,92,252,0.10) 0%,transparent 65%);
+  pointer-events:none;animation:breathe 4s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #7c5cfc, #a78bfa, #7c5cfc);
-    background-size: 200% auto;
-    animation: shimmer 3s linear infinite;
-  }
+/* Logo */
+.logo-wrap{position:relative;width:80px;height:80px;margin:0 auto 1.4rem;}
+.logo-ring-outer{
+  position:absolute;inset:0;border-radius:50%;
+  border:1px solid var(--v-brd);
+  animation:spin-slow 14s linear infinite;
+}
+.logo-ring-inner{
+  position:absolute;inset:7px;border-radius:50%;
+  border:1px dashed rgba(167,139,250,0.2);
+  animation:spin-slow 10s linear infinite reverse;
+}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
+.logo-core{
+  position:absolute;inset:12px;border-radius:50%;
+  background:var(--bg3);border:1px solid var(--border2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  box-shadow:0 0 18px rgba(124,92,252,0.12);
+}
 
-  @keyframes shimmer {
-    0%   { background-position: 0% center; }
-    100% { background-position: 200% center; }
-  }
+/* Nombre marca */
+.brand{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:32px;font-weight:700;
+  color:var(--white);letter-spacing:-1px;
+  animation:fadeUp .6s ease both;
+}
+.brand em{font-style:normal;color:var(--v2);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 
-  .avatar {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: var(--bg3);
-    border: 1.5px solid var(--border2);
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 1.25rem;
-    font-size: 34px;
-  }
+.tagline{
+  font-size:9.5px;color:var(--muted);
+  letter-spacing:2.5px;text-transform:uppercase;font-weight:500;
+  margin-top:4px;animation:fadeUp .6s .1s ease both;
+}
 
-  .hero h1 {
-    font-size: 22px;
-    font-weight: 600;
-    color: #fff;
-    letter-spacing: -0.5px;
-  }
+.hero-desc{
+  font-size:13px;color:var(--muted);margin-top:12px;line-height:1.6;
+  animation:fadeUp .6s .2s ease both;
+}
 
-  .hero .sub {
-    font-size: 13px;
-    color: var(--muted);
-    margin-top: 4px;
-  }
+/* PILLS */
+.pills{
+  display:flex;justify-content:center;flex-wrap:wrap;gap:7px;
+  margin-top:18px;animation:fadeUp .6s .3s ease both;
+}
+.pill{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11px;font-weight:500;
+  padding:5px 12px;border-radius:20px;
+  border:1px solid var(--border2);color:var(--muted);background:var(--bg2);
+  cursor:default;
+}
+.pill.online{border-color:var(--g-brd);color:var(--g);background:var(--g-bg);}
+.dot{width:5px;height:5px;border-radius:50%;background:var(--g);animation:blink 2s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
-  .badges {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-  }
+button.pill{
+  cursor:pointer;font-family:inherit;line-height:1.6;
+  transition:border-color .2s,background .2s,color .2s,transform .15s,box-shadow .2s;
+}
+button.pill:hover{border-color:var(--border3);background:var(--bg4);color:var(--white);}
+button.pill:active{transform:scale(0.94);}
+button.pill.on{
+  border-color:var(--v-brd);color:var(--v2);background:var(--v-bg);
+  box-shadow:0 0 12px rgba(124,92,252,0.15);
+}
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    font-size: 11px;
-    padding: 4px 10px;
-    border-radius: 20px;
-    border: 1px solid var(--border2);
-    color: var(--muted);
-    background: var(--bg2);
-  }
+/* PANEL (pill info) */
+.panel{
+  display:none;
+  margin:1rem 1.5rem 0;
+  border-radius:var(--r-xl);
+  border:1px solid var(--border2);
+  background:var(--bg2);
+  overflow:hidden;
+}
+.panel.on{display:block;animation:slideDown .25s cubic-bezier(.4,0,.2,1);}
+@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.panel-head{
+  padding:13px 16px 11px;
+  border-bottom:1px solid var(--border);
+  font-family:'Space Grotesk',sans-serif;
+  font-size:13px;font-weight:600;color:var(--white);
+}
+.ic-row{display:flex;gap:12px;padding:11px 16px;border-bottom:1px solid var(--border);}
+.ic-row:last-child{border-bottom:none;}
+.ic-ico{font-size:17px;flex-shrink:0;margin-top:1px;}
+.ic-label{font-size:12px;font-weight:600;color:var(--white);}
+.ic-desc{font-size:11px;color:var(--muted);margin-top:2px;line-height:1.5;}
+.pp{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:600;padding:3px 9px;border-radius:20px;margin-top:6px;}
+.pp-g{background:var(--g-bg);color:var(--g);border:1px solid var(--g-brd);}
+.pp-b{background:var(--b-bg);color:var(--b);border:1px solid var(--b-brd);}
+.pp-a{background:var(--a-bg);color:var(--a);border:1px solid var(--a-brd);}
 
-  .badge.active {
-    border-color: rgba(34,197,94,0.35);
-    color: var(--green);
-    background: var(--green-bg);
-  }
+/* NAV TABS */
+.tabs{display:flex;gap:7px;padding:1.25rem 1.5rem 0;}
+button.tab{
+  flex:1;padding:10px;border-radius:var(--r-lg);
+  border:1px solid var(--border);background:var(--bg2);
+  color:var(--muted);font-family:'Space Grotesk',sans-serif;
+  font-size:12px;font-weight:600;cursor:pointer;
+  transition:all .2s;
+}
+button.tab:hover{border-color:var(--border2);color:var(--white);background:var(--bg3);}
+button.tab.on{
+  border-color:var(--v-brd);color:var(--v2);background:var(--v-bg);
+  box-shadow:0 0 12px rgba(124,92,252,0.10);
+}
 
-  .badge .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s ease-in-out infinite;
-  }
+/* VIEWS */
+.view{display:none;padding:1rem 1.5rem 0;}
+.view.on{display:block;}
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0.4; }
-  }
+/* SERVICE CARDS */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.svc{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r-lg);padding:15px 14px;
+  transition:border-color .25s,background .25s,transform .2s,box-shadow .25s;
+  cursor:default;position:relative;overflow:hidden;
+}
+.svc::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(124,92,252,0.06),transparent 70%);
+  opacity:0;transition:opacity .3s;
+}
+.svc:hover{border-color:var(--v-brd);background:var(--bg3);transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.4);}
+.svc:hover::after{opacity:1;}
+.svc-ico{font-size:22px;margin-bottom:10px;display:block;}
+.svc-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--white);line-height:1.3;}
+.svc-desc{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.45;}
 
-  /* ── Section ── */
-  .section {
-    padding: 1.5rem 1.5rem 0;
-  }
+/* PRICE CARDS */
+.pcard{
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r-xl);overflow:hidden;margin-bottom:10px;
+}
+.pcard:last-of-type{margin-bottom:0;}
+.pcat{
+  display:flex;align-items:center;gap:9px;
+  padding:11px 16px;border-bottom:1px solid var(--border);
+  background:var(--bg3);
+}
+.pcat-ico{font-size:18px;}
+.pcat-name{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--white);}
+.pcat-tag{margin-left:auto;}
+.prow{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px;border-bottom:1px solid var(--border);gap:12px;
+  transition:background .15s;
+}
+.prow:last-child{border-bottom:none;}
+.prow:hover{background:var(--bg3);}
+.pl{flex:1;min-width:0;}
+.pn{font-size:13px;font-weight:500;color:var(--text);}
+.pnote{font-size:11px;color:var(--muted);margin-top:1px;}
+.pr{text-align:right;flex-shrink:0;}
+.pval{font-size:14px;font-weight:600;color:var(--white);white-space:nowrap;font-family:'Space Grotesk',sans-serif;}
+.tag{display:inline-block;font-size:9px;font-weight:600;letter-spacing:.5px;padding:2px 7px;border-radius:4px;margin-bottom:3px;text-transform:uppercase;}
+.tv{background:var(--v-bg);color:var(--v2);border:1px solid var(--v-brd);}
+.tb{background:var(--b-bg);color:var(--b);border:1px solid rgba(96,165,250,.2);}
+.ta{background:var(--a-bg);color:var(--a);border:1px solid var(--a-brd);}
 
-  .section-label {
-    font-size: 10px;
-    font-weight: 600;
-    color: var(--muted2);
-    letter-spacing: 1.8px;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
+/* PS5 Banner */
+.ps5-warn{
+  display:flex;align-items:flex-start;gap:10px;
+  background:var(--a-bg);border-bottom:1px solid var(--a-brd);
+  padding:10px 16px;
+}
+.ps5-warn p{font-size:11px;color:var(--muted);line-height:1.5;}
+.ps5-warn b{color:var(--a);}
 
-  /* ── Services ── */
-  .grid-2 {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
+/* Nota */
+.nota{
+  display:flex;gap:10px;align-items:flex-start;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:var(--r);padding:12px 14px;margin-top:10px;
+}
+.nota p{font-size:11px;color:var(--muted);line-height:1.6;}
+.nota p b{color:var(--v2);font-weight:500;}
 
-  .svc-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    transition: border-color 0.2s, background 0.2s;
-    cursor: default;
-  }
+/* CTA */
+.cta-wrap{padding:1.75rem 1.5rem 0;}
+.cta-wa{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:#25d366;color:#000;font-size:15px;font-weight:600;
+  padding:16px;border-radius:var(--r-xl);text-decoration:none;
+  transition:transform .15s,box-shadow .2s;
+  font-family:'Space Grotesk',sans-serif;
+  box-shadow:0 4px 20px rgba(37,211,102,0.20);
+}
+.cta-wa:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,0.30);}
+.cta-wa:active{transform:scale(.97);}
+.cta-wa svg{width:22px;height:22px;flex-shrink:0;}
+.cta-note{text-align:center;font-size:11px;color:var(--muted2);margin-top:10px;}
 
-  .svc-card:hover {
-    border-color: var(--border2);
-    background: var(--bg3);
-  }
+/* ── EXTRA SECTIONS ── */
+.extra-section{padding:1.5rem 1.5rem 0;}
+.sec-hd{display:flex;align-items:center;gap:8px;margin-bottom:1rem;}
+.sec-lbl{font-size:10px;font-weight:600;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;white-space:nowrap;}
+.sec-ln{flex:1;height:1px;background:var(--border);}
 
-  .svc-icon {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
+/* EMPRESAS */
+.biz-card{background:var(--bg2);border:1px solid var(--border2);border-radius:var(--r-xl);padding:18px;position:relative;overflow:hidden;}
+.biz-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--b),var(--v2));opacity:.6;}
+.biz-top{display:flex;align-items:flex-start;gap:12px;margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border);}
+.biz-icon{font-size:26px;flex-shrink:0;margin-top:2px;}
+.biz-title{font-family:'Space Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--white);line-height:1.3;}
+.biz-sub{font-size:11px;color:var(--muted);margin-top:3px;}
+.biz-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.biz-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:12px;}
+.biz-ico{font-size:18px;display:block;margin-bottom:7px;}
+.biz-item-title{font-size:12px;font-weight:600;color:var(--white);margin-bottom:4px;font-family:'Space Grotesk',sans-serif;}
+.biz-item-desc{font-size:10.5px;color:var(--muted);line-height:1.5;}
+.biz-cta{display:block;text-align:center;background:var(--bg3);border:1px solid var(--b-brd);color:var(--b);font-size:13px;font-weight:600;padding:12px;border-radius:var(--r-lg);text-decoration:none;font-family:'Space Grotesk',sans-serif;transition:background .2s,border-color .2s,color .2s,transform .15s;}
+.biz-cta:hover{background:var(--b-bg);border-color:var(--b);color:var(--white);transform:translateY(-1px);}
+.biz-cta:active{transform:scale(.97);}
 
-  .svc-name {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-  }
+/* FAQ */
+.faqs{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--border);}
+.faq{background:var(--bg2);cursor:pointer;transition:background .15s;}
+.faq:hover{background:var(--bg3);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;gap:12px;}
+.faq-q span:first-child{font-size:13px;font-weight:500;color:var(--text);}
+.faq-arr{font-size:10px;color:var(--muted2);flex-shrink:0;transition:transform .25s;}
+.faq.open .faq-arr{transform:rotate(180deg);}
+.faq-a{font-size:12px;color:var(--muted);line-height:1.6;padding:0 15px 13px;display:none;}
+.faq.open .faq-a{display:block;}
 
-  .svc-desc {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 3px;
-    line-height: 1.5;
-  }
+/* CONTACT GRID */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.contact-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:14px;text-decoration:none;}
+.cc-icon{font-size:22px;margin-bottom:8px;}
+.cc-title{font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:600;color:var(--white);margin-bottom:10px;}
+.cc-rows{display:flex;flex-direction:column;gap:6px;}
+.cc-row{display:flex;justify-content:space-between;align-items:center;font-size:10.5px;color:var(--muted);}
+.cc-val{color:var(--text);font-weight:500;}
+.cc-sub{font-size:13px;font-weight:600;color:var(--white);margin-bottom:10px;}
+.call-card{border-color:var(--g-brd);background:var(--g-bg);cursor:pointer;transition:transform .15s,box-shadow .2s;}
+.call-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(34,197,94,0.15);}
+.call-card .cc-title{color:var(--g);}
+.call-btn{display:inline-block;background:var(--g);color:#000;font-size:11px;font-weight:700;padding:6px 12px;border-radius:20px;font-family:'Space Grotesk',sans-serif;}
 
-  /* ── Domicilio ── */
-  .info-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    margin-top: 8px;
-  }
-
-  .info-icon {
-    font-size: 24px;
-    flex-shrink: 0;
-    color: #60a5fa;
-  }
-
-  .info-title {
-    font-size: 13px;
-    font-weight: 600;
-    color: #fff;
-  }
-
-  .info-sub {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  /* ── Prices ── */
-  .price-list {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    overflow: hidden;
-  }
-
-  .price-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 13px 16px;
-    border-bottom: 1px solid var(--border);
-    gap: 12px;
-    transition: background 0.15s;
-  }
-
-  .price-item:last-child {
-    border-bottom: none;
-  }
-
-  .price-item:hover {
-    background: var(--bg3);
-  }
-
-  .price-left { flex: 1; min-width: 0; }
-
-  .price-name {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-
-  .price-note {
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 2px;
-  }
-
-  .price-right {
-    text-align: right;
-    flex-shrink: 0;
-  }
-
-  .price-value {
-    font-size: 14px;
-    font-weight: 600;
-    color: #fff;
-    white-space: nowrap;
-  }
-
-  .tag {
-    display: inline-block;
-    font-size: 9px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    padding: 2px 6px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-
-  .tag-purple {
-    background: var(--accent-bg);
-    color: #a78bfa;
-    border: 1px solid rgba(124,92,252,0.2);
-  }
-
-  .tag-green {
-    background: var(--green-bg);
-    color: var(--green);
-    border: 1px solid rgba(34,197,94,0.2);
-  }
-
-  /* ── Aviso ── */
-  .aviso {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    margin-top: 10px;
-  }
-
-  .aviso-icon { font-size: 15px; color: var(--muted); flex-shrink: 0; margin-top: 1px; }
-  .aviso p { font-size: 11px; color: var(--muted); line-height: 1.6; }
-  .aviso span { color: #a78bfa; }
-
-  /* ── CTA WhatsApp ── */
-  .cta-wrap {
-    padding: 1.5rem 1.5rem 0;
-  }
-
-  .cta-wa {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    background: var(--wa);
-    color: #000;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 15px;
-    border-radius: var(--radius);
-    text-decoration: none;
-    transition: opacity 0.2s, transform 0.1s;
-  }
-
-  .cta-wa:active {
-    opacity: 0.85;
-    transform: scale(0.98);
-  }
-
-  .cta-wa svg {
-    width: 22px; height: 22px;
-  }
-
-  .cta-sub {
-    text-align: center;
-    font-size: 11px;
-    color: var(--muted2);
-    margin-top: 10px;
-  }
-
-  /* ── Separador ── */
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 1.5rem 1.5rem 0;
-  }
-
-  /* ── Footer ── */
-  .footer {
-    text-align: center;
-    padding: 1.5rem 1.5rem 0;
-    font-size: 11px;
-    color: var(--muted2);
-    line-height: 2;
-  }
+/* QR */
+.qr-card{display:flex;align-items:center;gap:16px;background:var(--bg2);border:1px solid var(--border);border-radius:var(--r-lg);padding:16px;}
+#qr-canvas{border-radius:8px;flex-shrink:0;}
+.qr-info{flex:1;}
+.qr-title{font-family:'Space Grotesk',sans-serif;font-size:13px;font-weight:600;color:var(--white);margin-bottom:5px;}
+.qr-desc{font-size:11px;color:var(--muted);line-height:1.5;margin-bottom:10px;}
+.qr-dl{background:var(--bg3);border:1px solid var(--border2);color:var(--text);font-size:11px;font-weight:500;padding:7px 12px;border-radius:var(--r);cursor:pointer;font-family:inherit;transition:background .15s,border-color .15s;}
+.qr-dl:hover{background:var(--bg4);border-color:var(--border3);}
+.footer{text-align:center;padding:1.5rem 1.5rem 0;font-size:11px;color:var(--muted2);line-height:2.1;}
+.footer-brand{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:15px;font-weight:700;color:var(--v2);
+  letter-spacing:.5px;display:block;margin-bottom:3px;
+}
+.footer strong{color:var(--muted);font-weight:400;}
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="page">
 
   <!-- HERO -->
   <div class="hero">
-    <div class="avatar">🖥️</div>
-    <h1>Máximo</h1>
-    <p class="sub">Técnico en PC &amp; Consolas · Santiago, Chile</p>
-    <div class="badges">
-      <span class="badge active">
-        <span class="dot"></span>
-        Disponible ahora
-      </span>
-      <span class="badge">📍 A domicilio</span>
+    <div class="hero-glow"></div>
+    <div class="hero-bg" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+    </div>
+
+    <div class="logo-wrap" aria-hidden="true">
+      <div class="logo-ring-outer"></div>
+      <div class="logo-ring-inner"></div>
+      <div class="logo-core">🖥️</div>
+    </div>
+
+    <h1 class="brand">SHI<em>MA</em></h1>
+    <p class="tagline">Soluciones · Hardware · Ingeniería · Aplicada</p>
+    <p class="hero-desc">Soporte técnico profesional en PC, notebooks y consolas.<br>Quilicura, Santiago · Red de técnicos colaboradores</p>
+
+    <div class="pills">
+      <span class="pill online"><span class="dot"></span>Disponible ahora</span>
+      <button class="pill" id="p-dom" onclick="pill('dom')">📍 A domicilio</button>
+      <button class="pill" id="p-gar" onclick="pill('gar')">🛡️ Con garantía</button>
+      <button class="pill" id="p-col" onclick="pill('col')">🤝 Colaboradores</button>
     </div>
   </div>
 
-  <!-- SERVICIOS -->
-  <div class="section">
-    <p class="section-label">Servicios</p>
-    <div class="grid-2">
+  <!-- PANEL: DOMICILIO -->
+  <div class="panel" id="pn-dom">
+    <div class="panel-head">📍 Servicio a domicilio</div>
+    <div class="ic-row">
+      <span class="ic-ico">🏠</span>
+      <div><div class="ic-label">Quilicura</div>
+        <div class="ic-desc">Sin costo de traslado dentro de la comuna.</div>
+        <span class="pp pp-g">Gratis</span></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🗺️</span>
+      <div><div class="ic-label">Comunas cercanas</div>
+        <div class="ic-desc">Renca, Pudahuel, Conchalí, Huechuraba, Lo Barnechea y sectores aledaños.</div>
+        <span class="pp pp-b">$5.000 traslado</span></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🛣️</span>
+      <div><div class="ic-label">Comunas más alejadas</div>
+        <div class="ic-desc">Otras comunas de Santiago según disponibilidad y distancia.</div>
+        <span class="pp pp-a">Hasta $10.000 traslado</span></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">📱</span>
+      <div><div class="ic-label">¿Cómo coordinar?</div>
+        <div class="ic-desc">Escríbenos por WhatsApp con tu comuna y el problema. Confirmamos disponibilidad y horario.</div></div>
+    </div>
+  </div>
 
-      <div class="svc-card">
-        <div class="svc-icon">🔍</div>
+  <!-- PANEL: GARANTÍA -->
+  <div class="panel" id="pn-gar">
+    <div class="panel-head">🛡️ Garantía en cada servicio</div>
+    <div class="ic-row">
+      <span class="ic-ico">✅</span>
+      <div><div class="ic-label">7 días en servicios de software</div>
+        <div class="ic-desc">Si el problema fue causado por nuestro trabajo, lo resolvemos sin costo adicional.</div></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🔩</span>
+      <div><div class="ic-label">30 días en hardware</div>
+        <div class="ic-desc">Instalación de componentes, ensamblado y mantenciones físicas respaldadas por 30 días.</div></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🆓</span>
+      <div><div class="ic-label">Sin diagnóstico, sin cobro</div>
+        <div class="ic-desc">Si el equipo no enciende o no podemos determinar la falla, el diagnóstico es completamente gratis.</div>
+        <span class="pp pp-g">Diagnóstico gratis</span></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🤝</span>
+      <div><div class="ic-label">Nuevos clientes — anticipo de traslado</div>
+        <div class="ic-desc">Para el primer servicio se solicita el valor del traslado como reserva. Se aplica al total una vez finalizado el trabajo.</div></div>
+    </div>
+  </div>
+
+  <!-- PANEL: COLABORADORES -->
+  <div class="panel" id="pn-col">
+    <div class="panel-head">🤝 Nuestro compromiso de servicio</div>
+    <div class="ic-row">
+      <span class="ic-ico">👥</span>
+      <div><div class="ic-label">Red de técnicos colaboradores</div>
+        <div class="ic-desc">Trabajamos con socios especializados. Si tu problema requiere una habilidad particular, lo derivamos internamente para garantizarte la mejor solución.</div></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">⏱️</span>
+      <div><div class="ic-label">Respuesta rápida</div>
+        <div class="ic-desc">Intentamos responder todos los mensajes en el menor tiempo posible, lunes a sábado en horario hábil.</div></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">📋</span>
+      <div><div class="ic-label">Presupuesto antes de trabajar</div>
+        <div class="ic-desc">Siempre te informamos el costo estimado antes de iniciar. Sin sorpresas al final.</div></div>
+    </div>
+    <div class="ic-row">
+      <span class="ic-ico">🔒</span>
+      <div><div class="ic-label">Privacidad de tu equipo</div>
+        <div class="ic-desc">Tus datos y archivos son tuyos. No accedemos a información personal salvo lo estrictamente necesario.</div></div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <button class="tab on" id="t-svc" onclick="tab('svc')">🛠️ Servicios</button>
+    <button class="tab" id="t-prc" onclick="tab('prc')">💰 Precios</button>
+  </div>
+
+  <!-- VIEW: SERVICIOS -->
+  <div class="view on" id="v-svc">
+    <div class="svc-grid">
+      <div class="svc"><span class="svc-ico">🔍</span>
         <div class="svc-name">Diagnóstico</div>
-        <div class="svc-desc">Detección completa de fallas en el hardware y software</div>
-      </div>
-
-      <div class="svc-card">
-        <div class="svc-icon">🔄</div>
+        <div class="svc-desc">Detección completa de fallas hardware y software</div></div>
+      <div class="svc"><span class="svc-ico">🔄</span>
         <div class="svc-name">Formateo</div>
-        <div class="svc-desc">Windows limpio, drivers y activación incluidos</div>
-      </div>
+        <div class="svc-desc">Windows 10, 11 y 11 LTSC — limpio con drivers</div></div>
+      <div class="svc"><span class="svc-ico">🖥️</span>
+        <div class="svc-name">Limpieza Desktop</div>
+        <div class="svc-desc">PC torre — pasta térmica y ventiladores</div></div>
+      <div class="svc"><span class="svc-ico">💻</span>
+        <div class="svc-name">Limpieza Notebook</div>
+        <div class="svc-desc">Desmontaje completo, pasta y ventilador</div></div>
+      <div class="svc"><span class="svc-ico">🔧</span>
+        <div class="svc-name">Armado de PC</div>
+        <div class="svc-desc">Ensamblado, cableado y configuración completa</div></div>
+      <div class="svc"><span class="svc-ico">🛠️</span>
+        <div class="svc-name">Hardware &amp; Software</div>
+        <div class="svc-desc">RAM, SSD, fuentes, drivers y optimización</div></div>
+      <div class="svc"><span class="svc-ico">🎮</span>
+        <div class="svc-name">PS4 &amp; Xbox One</div>
+        <div class="svc-desc">Pasta térmica y mantención general</div></div>
+      <div class="svc"><span class="svc-ico">🕹️</span>
+        <div class="svc-name">PlayStation 5</div>
+        <div class="svc-desc">Mantención especializada — metal líquido</div></div>
+    </div>
+  </div>
 
-      <div class="svc-card">
-        <div class="svc-icon">💨</div>
-        <div class="svc-name">Limpieza pc`s desktop y notebooks</div>
-        <div class="svc-desc">Interna, pasta térmica y ventiladores</div>
-      </div>
+  <!-- VIEW: PRECIOS -->
+  <div class="view" id="v-prc">
 
-      <div class="svc-card">
-        <div class="svc-icon">🔧</div>
-        <div class="svc-name">Armado de PC desktop</div>
-        <div class="svc-desc">Ensamblado, cableado y configuración</div>
+    <!-- Desktop -->
+    <div class="pcard">
+      <div class="pcat"><span class="pcat-ico">🖥️</span><span class="pcat-name">PC Desktop</span></div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Diagnóstico</div><div class="pnote">Revisión completa de hardware y software: pruebas de RAM, disco, temperatura, fuente y sistema operativo. Si no se logra determinar la falla, el diagnóstico es gratis. No aplica en casos de daño físico visible (líquido derramado, componente quemado o chip dañado).</div></div>
+        <div class="pr"><div class="pval">$15.000</div></div>
       </div>
-
-      <div class="svc-card">
-        <div class="svc-icon">🛠️</div>
-        <div class="svc-name">Hardware &amp; SW</div>
-        <div class="svc-desc">Reemplazo de piezas, RAM, SSD, fuentes</div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Formateo + Windows</div><div class="pnote">Instalación limpia de Windows 10, 11 o 11 LTSC con todos los drivers actualizados, activación y licencia digital genuina incluida. El equipo queda listo para usar.</div></div>
+        <div class="pr"><div class="pval">$20.000</div></div>
       </div>
-
-      <div class="svc-card">
-        <div class="svc-icon">🎮</div>
-        <div class="svc-name">Consolas</div>
-        <div class="svc-desc">PS4, PS5, xbox one — limpieza y pasta</div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Formateo sin licencia</div><div class="pnote">Instalación limpia del sistema operativo con drivers y configuración básica. Usando licencia existente del equipo o software gratuito según preferencia del cliente.</div></div>
+        <div class="pr"><div class="pval">$5.000</div></div>
       </div>
-
+      <div class="prow">
+        <div class="pl"><div class="pn">Limpieza interna</div><div class="pnote">Limpieza parcial sin desmantelar el gabinete: limpieza de la placa madre, cambio de pasta térmica en CPU y revisión de ventiladores. Servicio rápido y efectivo para equipos con sobrecalentamiento moderado.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$25.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Armado de PC</div><div class="pnote">Ensamblado completo con los componentes del cliente: instalación de CPU, RAM, almacenamiento, tarjeta de video y fuente. Cableado ordenado, pruebas de arranque y configuración inicial del sistema.</div></div>
+        <div class="pr"><div class="pval">$30.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Mantención completa</div><div class="pnote">Servicio integral que incluye diagnóstico, limpieza interna con cambio de pasta térmica, formateo con Windows, instalación de drivers y optimización del rendimiento. El equipo queda como nuevo.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$40.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Instalación de software</div><div class="pnote">Instalación de programas según necesidad: Office, antivirus, navegadores, reproductores, herramientas de trabajo o estudio. Se cotiza según lo requerido.</div></div>
+        <div class="pr"><div class="tag tb">A elección</div></div>
+      </div>
     </div>
 
-    <div class="info-row">
-      <div class="info-icon">🚗</div>
-      <div>
-        <div class="info-title">Voy a domicilio</div>
-        <div class="info-sub">Sin costo adicional dentro de quilicura · Coordina por WhatsApp</div>
+    <!-- Notebook -->
+    <div class="pcard" style="margin-top:10px">
+      <div class="pcat"><span class="pcat-ico">💻</span><span class="pcat-name">Notebook</span></div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Diagnóstico</div><div class="pnote">Revisión completa de hardware y software: pruebas de RAM, disco, temperatura, batería y sistema operativo. Si no se logra determinar la falla, el diagnóstico es gratis. No aplica en casos de daño físico visible (líquido derramado, componente quemado o chip dañado).</div></div>
+        <div class="pr"><div class="pval">$15.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Formateo + Windows</div><div class="pnote">Instalación limpia de Windows 10, 11 o 11 LTSC con drivers específicos del modelo, activación y licencia digital genuina incluida. El equipo queda listo para usar.</div></div>
+        <div class="pr"><div class="pval">$20.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Formateo sin licencia</div><div class="pnote">Instalación limpia del sistema operativo con drivers y configuración básica. Usando licencia existente del equipo o software gratuito según preferencia del cliente.</div></div>
+        <div class="pr"><div class="pval">$5.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Limpieza interna</div><div class="pnote">Limpieza parcial sin desmantelar completamente el notebook: acceso a la placa, limpieza de la zona de refrigeración y cambio de pasta térmica en CPU. Solución rápida para notebooks con calor excesivo sin requerir desmontaje total.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$25.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Mantención completa</div><div class="pnote">Servicio integral que incluye diagnóstico, limpieza interna con cambio de pasta térmica, formateo con Windows, drivers y optimización del sistema. Ideal para notebooks lentos o con problemas de calor.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$30.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Instalación de software</div><div class="pnote">Office, antivirus, programas varios</div></div>
+        <div class="pr"><div class="tag tb">A elección</div></div>
+      </div>
+    </div>
+
+    <!-- PS4 y Xbox One -->
+    <div class="pcard" style="margin-top:10px">
+      <div class="pcat"><span class="pcat-ico">🎮</span><span class="pcat-name">PS4 &amp; Xbox One</span></div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Cambio de pasta térmica</div><div class="pnote">Desmontaje de la consola, limpieza de polvo acumulado y reemplazo de la pasta térmica del procesador. Soluciona el sobrecalentamiento y el ruido excesivo del ventilador.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$20.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Mantención completa</div><div class="pnote">Servicio completo que incluye limpieza interna profunda, cambio de pasta térmica, revisión del lector, ventilador y conectores. Deja la consola funcionando de forma óptima y silenciosa.</div></div>
+        <div class="pr"><div class="tag tv">Desde</div><div class="pval">$30.000</div></div>
+      </div>
+    </div>
+
+    <!-- PS5 -->
+    <div class="pcard" style="margin-top:10px">
+      <div class="pcat">
+        <span class="pcat-ico">🕹️</span>
+        <span class="pcat-name">PlayStation 5</span>
+        <span class="pcat-tag"><span class="tag ta">Especializado</span></span>
+      </div>
+      <div class="ps5-warn">
+        <span style="font-size:16px;flex-shrink:0;margin-top:1px">⚠️</span>
+        <p>La PS5 usa <b>metal líquido</b> como pasta térmica. Su reemplazo requiere herramientas y técnica específica.</p>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Limpieza interna</div><div class="pnote">Apertura de la PS5 y limpieza profunda de polvo en ventilador, disipador y carcasa interna. No se interviene el sistema de metal líquido. Ideal como mantención preventiva anual.</div></div>
+        <div class="pr"><div class="tag ta">Desde</div><div class="pval">$25.000</div></div>
+      </div>
+      <div class="prow">
+        <div class="pl"><div class="pn">Mantención completa</div><div class="pnote">Servicio especializado que incluye limpieza profunda, reemplazo del metal líquido del procesador con producto profesional, revisión del sistema de refrigeración y pruebas de temperatura. Requiere herramientas y técnica específica.</div></div>
+        <div class="pr"><div class="tag ta">Desde</div><div class="pval">$50.000</div></div>
+      </div>
+    </div>
+
+    <div class="nota">
+      <span style="font-size:14px;flex-shrink:0;margin-top:1px">ℹ️</span>
+      <p>Precios en <b>pesos chilenos (CLP)</b>. El valor final puede variar según diagnóstico. <b>Repuestos no incluidos.</b> Presupuesto gratis — consulta sin compromiso.</p>
+    </div>
+  </div>
+
+  <!-- EMPRESAS -->
+  <div class="extra-section">
+    <div class="sec-hd"><span class="sec-lbl">Empresas y escala</span><span class="sec-ln"></span></div>
+    <div class="biz-card">
+      <div class="biz-top">
+        <div class="biz-icon">🏢</div>
+        <div>
+          <div class="biz-title">¿Tienes una empresa o más de un equipo?</div>
+          <div class="biz-sub">Ofrecemos atención a mayor escala con tarifas especiales</div>
+        </div>
+      </div>
+      <div class="biz-grid">
+        <div class="biz-item">
+          <span class="biz-ico">🖥️</span>
+          <div class="biz-item-title">Mantención de flota</div>
+          <div class="biz-item-desc">Mantención periódica de múltiples equipos en oficinas, colegios o locales comerciales. Coordinamos horario para no interrumpir la operación.</div>
+        </div>
+        <div class="biz-item">
+          <span class="biz-ico">⚡</span>
+          <div class="biz-item-title">Soporte prioritario</div>
+          <div class="biz-item-desc">Atención preferente ante fallas críticas. Respuesta rápida y técnicos colaboradores disponibles para resolver en el menor tiempo posible.</div>
+        </div>
+        <div class="biz-item">
+          <span class="biz-ico">📦</span>
+          <div class="biz-item-title">Armado en volumen</div>
+          <div class="biz-item-desc">Ensamblado y configuración de múltiples equipos para equipar oficinas o salas de trabajo. Precios por volumen negociables.</div>
+        </div>
+        <div class="biz-item">
+          <span class="biz-ico">📋</span>
+          <div class="biz-item-title">Presupuesto a medida</div>
+          <div class="biz-item-desc">Cotización personalizada según cantidad de equipos, frecuencia del servicio y tipo de soporte requerido. Sin compromisos.</div>
+        </div>
+      </div>
+      <a href="https://wa.me/56975587646?text=Hola%2C%20me%20interesa%20el%20servicio%20de%20SHIMA%20para%20empresa%20o%20a%20mayor%20escala%20%F0%9F%8F%A2" class="biz-cta">Consultar para empresa</a>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="extra-section" id="sec-faq">
+    <div class="sec-hd"><span class="sec-lbl">Preguntas frecuentes</span><span class="sec-ln"></span></div>
+    <div class="faqs">
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Cuánto demora un formateo?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">Normalmente entre 1 y 2 horas dependiendo del equipo. En la mayoría de los casos puedes esperar o retirarlo el mismo día.</div>
+      </div>
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Tengo que dejar el equipo?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">Para servicios rápidos como formateo o limpieza puedes esperar. Para diagnósticos complejos o reparaciones de hardware puede quedar entre 24 y 48 horas.</div>
+      </div>
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Qué pasa si no se puede reparar?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">Si no logramos solucionar el problema y no hay diagnóstico claro, no se cobra. Si hay diagnóstico con causa identificada pero el cliente decide no reparar, se cobra solo el diagnóstico ($15.000).</div>
+      </div>
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Se pierden mis archivos con el formateo?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">El formateo borra el sistema operativo y los programas, pero podemos hacer respaldo de tus documentos, fotos y archivos importantes antes de proceder. Consulta por este servicio adicional.</div>
+      </div>
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Trabajan fines de semana?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">Sí, atendemos lunes a sábado. Los domingos dependiendo de disponibilidad — consulta por WhatsApp con anticipación.</div>
+      </div>
+      <div class="faq" onclick="faqToggle(this)">
+        <div class="faq-q"><span>¿Aceptan transferencia o efectivo?</span><span class="faq-arr">▼</span></div>
+        <div class="faq-a">Aceptamos transferencia bancaria, Mercado Pago y efectivo. El pago se realiza al finalizar el servicio.</div>
       </div>
     </div>
   </div>
 
-  <!-- PRECIOS -->
-  <div class="section" style="margin-top:1.5rem">
-    <p class="section-label">Precios referenciales</p>
-    <div class="price-list">
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Diagnóstico</div>
-          <div class="price-note">verificación completa de fallas en hardware y software</div>
-        </div>
-        <div class="price-right">
-          <div class="price-value">$15.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Formateo + Windows 11</div>
-          <div class="price-note">Drivers, actualizaciones y activación windows 10,11,11 ltsc</div>
-        </div>
-        <div class="price-right">
-          <div class="price-value">$15.000</div>
+  <!-- HORARIO + LLAMADA -->
+  <div class="extra-section">
+    <div class="sec-hd"><span class="sec-lbl">Contacto directo</span><span class="sec-ln"></span></div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="cc-icon">🕐</div>
+        <div class="cc-title">Horario de atención</div>
+        <div class="cc-rows">
+          <div class="cc-row"><span>Lunes a viernes</span><span class="cc-val">09:00 – 20:00</span></div>
+          <div class="cc-row"><span>Sábado</span><span class="cc-val">10:00 – 18:00</span></div>
+          <div class="cc-row"><span>Domingo</span><span class="cc-val">Previa coordinación</span></div>
         </div>
       </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Limpieza de PC desktop y notebooks</div>
-          <div class="price-note">Interna + cambio de pasta térmica</div>
-        </div>
-        <div class="price-right">
-          <div class="tag tag-purple">Desde</div>
-          <div class="price-value">$15.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Armado de PC</div>
-          <div class="price-note">Con componentes del cliente</div>
-        </div>
-        <div class="price-right">
-          <div class="price-value">$30.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Mantención completa</div>
-          <div class="price-note">Hardware + software + optimización</div>
-        </div>
-        <div class="price-right">
-          <div class="tag tag-purple">Desde</div>
-          <div class="price-value">$25.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Limpieza consola</div>
-          <div class="price-note">PS4 / PS5 / Nintendo Switch</div>
-        </div>
-        <div class="price-right">
-          <div class="tag tag-purple">Desde</div>
-          <div class="price-value">$20.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Pasta térmica consola</div>
-          <div class="price-note">incluye limpieza completa</div>
-        </div>
-        <div class="price-right">
-          
-          <div class="tag tag-purple">Desde</div>
-          <div class="price-value">$20.000</div>
-        </div>
-      </div>
-
-      <div class="price-item">
-        <div class="price-left">
-          <div class="price-name">Instalación de software</div>
-          <div class="price-note">Office, antivirus, windows</div>
-        </div>
-        <div class="price-right">
-          <div class="tag tag-green">a eleccion</div>
-        </div>
-      </div>
-
+      <a href="tel:+56975587646" class="contact-card call-card" aria-label="Llamar a SHIMA">
+        <div class="cc-icon">📞</div>
+        <div class="cc-title">Llamada directa</div>
+        <div class="cc-sub">+56 9 7558 7646</div>
+        <div class="call-btn">Llamar ahora</div>
+      </a>
     </div>
+  </div>
 
-    <div class="aviso">
-      <span class="aviso-icon">ℹ️</span>
-      <p>Precios en <span>pesos chilenos (CLP)</span>. El valor final puede variar según diagnóstico. <span>Repuestos no incluidos.</span> Consulta sin compromiso.</p>
+  <!-- QR -->
+  <div class="extra-section">
+    <div class="sec-hd"><span class="sec-lbl">Compartir página</span><span class="sec-ln"></span></div>
+    <div class="qr-card">
+      <canvas id="qr-canvas" width="160" height="160" aria-label="Código QR de SHIMA"></canvas>
+      <div class="qr-info">
+        <div class="qr-title">Código QR — SHIMA</div>
+        <div class="qr-desc">Escanea para abrir esta página o compártelo con quien necesite soporte técnico.</div>
+        <button class="qr-dl" onclick="downloadQR()">⬇ Descargar QR</button>
+      </div>
     </div>
   </div>
 
   <!-- CTA -->
   <div class="cta-wrap">
-    <a
-      href="https://wa.me/56975587646?text=Hola%20M%C3%A1ximo%2C%20vi%20tu%20p%C3%A1gina%20y%20necesito%20ayuda%20con%20mi%20PC%20%F0%9F%96%A5%EF%B8%8F"
-      class="cta-wa"
-      aria-label="Contactar a Máximo por WhatsApp"
-    >
+    <a href="https://wa.me/56975587646?text=Hola%2C%20vi%20la%20p%C3%A1gina%20de%20SHIMA%20y%20necesito%20ayuda%20t%C3%A9cnica%20%F0%9F%96%A5%EF%B8%8F" class="cta-wa" aria-label="Contactar a SHIMA por WhatsApp">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
         <path d="M12 0C5.373 0 0 5.373 0 12c0 2.119.554 4.107 1.523 5.828L.057 23.18a1 1 0 001.212 1.213l5.352-1.466A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.885 0-3.652-.51-5.17-1.402l-.37-.218-3.178.87.87-3.178-.218-.37A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/>
       </svg>
       Escribir por WhatsApp
     </a>
-    <p class="cta-sub">Respondo en menos de 1 hora · Lunes a sábado</p>
+    <p class="cta-note">Intentamos responder en menos de 1 hora · Lunes a sábado</p>
   </div>
 
   <hr>
-
-  <!-- FOOTER -->
   <div class="footer">
-    <p>Máximo · Técnico en PC &amp; Consolas</p>
-    <p>Santiago, Chile · +56 9 7558 7646</p>
-    <p style="margin-top:6px;color:#2a2a2e">© 2026</p>
+    <span class="footer-brand">SHIMA</span>
+    <strong>Soluciones, Hardware, Ingeniería, Máximo, Aplicada</strong><br>
+    Quilicura · Santiago, Chile · +56 9 7558 7646<br>
+    <span style="color:var(--muted2)">© 2026</span>
   </div>
-
 </div>
+
+<script>
+/* ── Pills ── */
+const PILLS=['dom','gar','col'];
+function pill(k){
+  const isOn=document.getElementById('p-'+k).classList.contains('on');
+  PILLS.forEach(id=>{
+    document.getElementById('pn-'+id).classList.remove('on');
+    document.getElementById('p-'+id).classList.remove('on');
+  });
+  if(!isOn){
+    document.getElementById('pn-'+k).classList.add('on');
+    document.getElementById('p-'+k).classList.add('on');
+    setTimeout(()=>document.getElementById('pn-'+k).scrollIntoView({behavior:'smooth',block:'nearest'}),30);
+  }
+}
+
+/* ── Tabs ── */
+const TABS=['svc','prc'];
+function tab(k){
+  TABS.forEach(id=>{
+    document.getElementById('v-'+id).classList.remove('on');
+    document.getElementById('t-'+id).classList.remove('on');
+  });
+  document.getElementById('v-'+k).classList.add('on');
+  document.getElementById('t-'+k).classList.add('on');
+}
+
+/* ── FAQ ── */
+function faqToggle(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq.open').forEach(f=>f.classList.remove('open'));
+  if(!isOpen) el.classList.add('open');
+}
+
+/* ── QR Generator ── */
+(function(){
+  const URL='https://maximotech.github.io/maximo-tech';
+  const canvas=document.getElementById('qr-canvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const S=canvas.width;
+
+  // QR matrix via QR-code-generator lib loaded below
+  function drawQR(qr){
+    const count=qr.getModuleCount();
+    const cell=Math.floor(S/count);
+    const off=Math.floor((S-cell*count)/2);
+    ctx.fillStyle='#131318';
+    ctx.fillRect(0,0,S,S);
+    ctx.fillStyle='#e2e2e8';
+    for(let r=0;r<count;r++){
+      for(let c=0;c<count;c++){
+        if(qr.isDark(r,c)){
+          ctx.beginPath();
+          ctx.roundRect(off+c*cell+1,off+r*cell+1,cell-2,cell-2,1);
+          ctx.fill();
+        }
+      }
+    }
+    // Logo center
+    const ls=cell*5;
+    const lx=(S-ls)/2, ly=(S-ls)/2;
+    ctx.fillStyle='#131318';
+    ctx.beginPath();
+    ctx.roundRect(lx-2,ly-2,ls+4,ls+4,4);
+    ctx.fill();
+    ctx.fillStyle='#a78bfa';
+    ctx.font=`bold ${Math.floor(ls*0.55)}px "Space Grotesk", sans-serif`;
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('S',S/2,S/2);
+  }
+
+  const script=document.createElement('script');
+  script.src='https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+  script.onload=function(){
+    try{
+      const qr=new QRCode(document.createElement('div'),{
+        text:URL,width:160,height:160,
+        correctLevel:QRCode.CorrectLevel.M
+      });
+      // Use QRCode's internal module to draw manually
+      // Fallback: draw via img src
+      const tmp=document.createElement('div');
+      tmp.style.display='none';
+      document.body.appendChild(tmp);
+      new QRCode(tmp,{text:URL,width:160,height:160,correctLevel:QRCode.CorrectLevel.M});
+      setTimeout(()=>{
+        const img=tmp.querySelector('img');
+        if(img&&img.src){
+          const i=new Image();
+          i.onload=()=>{
+            ctx.fillStyle='#131318';
+            ctx.fillRect(0,0,S,S);
+            ctx.drawImage(i,0,0,S,S);
+          };
+          i.src=img.src;
+        }
+        document.body.removeChild(tmp);
+      },200);
+    }catch(e){drawFallback();}
+  };
+  script.onerror=drawFallback;
+  document.head.appendChild(script);
+
+  function drawFallback(){
+    ctx.fillStyle='#131318';
+    ctx.fillRect(0,0,S,S);
+    ctx.fillStyle='#a78bfa';
+    ctx.font='bold 13px "Space Grotesk",sans-serif';
+    ctx.textAlign='center';
+    ctx.textBaseline='middle';
+    ctx.fillText('SHIMA',S/2,S/2-10);
+    ctx.fillStyle='#64647a';
+    ctx.font='10px Inter,sans-serif';
+    ctx.fillText('shima.cl',S/2,S/2+10);
+  }
+})();
+
+function downloadQR(){
+  const canvas=document.getElementById('qr-canvas');
+  const a=document.createElement('a');
+  a.download='SHIMA-QR.png';
+  a.href=canvas.toDataURL('image/png');
+  a.click();
+}
+</script>
 </body>
 </html>
